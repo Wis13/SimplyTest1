@@ -5,6 +5,8 @@ package Jenkins.simpletest;
         import org.junit.Test;
         import org.openqa.selenium.WebDriver;
         import org.openqa.selenium.chrome.ChromeDriver;
+        import org.openqa.selenium.chrome.ChromeOptions;
+
         import static org.junit.Assert.assertTrue;
 
 public class SimpleTest {
@@ -13,7 +15,13 @@ public class SimpleTest {
     @Before
     public void SetUp(){
         System.setProperty("webdriver.chromedriver", "chromedriver");
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        options.addArguments("--disable-infobars");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--remote-debaging-port=9222");
+        driver = new ChromeDriver(options);
     }
     @After
     public void TearDown(){
