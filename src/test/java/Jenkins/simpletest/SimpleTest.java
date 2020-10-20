@@ -5,7 +5,11 @@ package Jenkins.simpletest;
         import org.junit.Test;
         import org.openqa.selenium.WebDriver;
         import org.openqa.selenium.chrome.ChromeDriver;
+        import org.openqa.selenium.chrome.ChromeDriverService;
         import org.openqa.selenium.chrome.ChromeOptions;
+        import org.openqa.selenium.remote.DesiredCapabilities;
+
+        import java.io.File;
 
         import static org.junit.Assert.assertTrue;
 
@@ -14,14 +18,8 @@ public class SimpleTest {
     private WebDriver driver;
     @Before
     public void SetUp(){
-        System.setProperty("webdriver.chromedriver", "chromedriver");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-        options.addArguments("--disable-infobars");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--remote-debaging-port=9222");
-        driver = new ChromeDriver(options);
+        loadChromedriver();
+
     }
     @After
     public void TearDown(){
@@ -34,5 +32,20 @@ public class SimpleTest {
         Thread.sleep(2000);
         String title = driver.getTitle();
         assertTrue(title.contains("Українська правда"));
+    }
+    private void loadChromedriver(){
+        System.setProperty("webdriver.chromedriver", "chromedriver");
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        options.addArguments("start-maximized");
+        options.addArguments("disable-infobars");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--disable-dev-shm-usage");
+
+        this.driver = new ChromeDriver(options);
+
     }
 }
