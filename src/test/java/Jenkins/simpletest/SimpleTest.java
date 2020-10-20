@@ -12,7 +12,7 @@ public class SimpleTest {
     private WebDriver driver;
     @Before
     public void SetUp(){
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
+        System.setProperty("webdriver.chromedriver", "chromedriver");
         driver = new ChromeDriver();
     }
     @After
