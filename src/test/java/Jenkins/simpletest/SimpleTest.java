@@ -31,7 +31,7 @@ public class SimpleTest {
         driver.navigate().to("https://www.pravda.com.ua/");
         Thread.sleep(2000);
         String title = driver.getTitle();
-        assertTrue(title.contains("Украї нська правда"));
+        assertTrue(title.contains("Українська правда"));
     }
     private void loadChromedriver(){
         System.setProperty("webdriver.chromedriver", "chromedriver");
