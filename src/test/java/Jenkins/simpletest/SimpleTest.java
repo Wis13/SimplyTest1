@@ -14,6 +14,11 @@ public class SimpleTest {
     public void SetUp(){
         System.setProperty("webdriver.chrome.driver", "chromedriver");
         driver = new ChromeDriver();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     @After
     public void TearDown(){
